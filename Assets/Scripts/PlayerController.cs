@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	private int score;
+	public GUIText scoreText;
+
+
 	//Speed of the Player
 	public float speed = 10.0F;
 
@@ -14,7 +18,8 @@ public class PlayerController : MonoBehaviour {
 	public float downBound = -3.5F;
 	// Use this for initialization
 	void Start () {
-
+		score = 0;
+		UpdateScore ();
 	}
 
 	// Update is called once per frame
@@ -38,6 +43,15 @@ public class PlayerController : MonoBehaviour {
 		} else if(transform.position.y < downBound){
 			transform.position = new Vector3(transform.position.x,downBound,0);
 		}
+	}
+
+	public void IncrementScore() {
+		score += 1;
+		UpdateScore ();
+	}
+
+	public void UpdateScore() {
+		scoreText.text = "Score: " + score;
 	}
 }
 
